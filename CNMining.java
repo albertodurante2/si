@@ -504,7 +504,7 @@ public class CNMining
 		if (settings.areConstraintsAvailable()) {
 			if (settings.constraintsFilename.equals("")) {
 				JOptionPane.showMessageDialog(null, "Incorrect path to constraints file\nThe algoritm will now run without constraints...");
-				return false;
+				return false;      
 			}
 			else {
 				ConstraintParser cp = new ConstraintParser(settings.constraintsFilename);
