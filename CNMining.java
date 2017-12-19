@@ -705,7 +705,7 @@ public class CNMining
 		}
  
 		for (ObjectCursor<Node> e : endActs) {
-                    Node temp = (Node)e.value
+                    Node temp = (Node)e.value;
                         if ((temp.getInner_degree() > 0) {
 				Node en = cleanG.getNode(((temp).getNomeAttivita(), folded_map.get((temp).getNomeAttivita()));
 				endActivities.add(en);
