@@ -697,15 +697,17 @@ public class CNMining
 		}
 		
 		for (ObjectCursor<Node> n1 : startActs) {
-			if (((Node)n1.value).getOuter_degree() > 0) {
-				Node cn = cleanG.getNode(((Node)n1.value).getNomeAttivita(), folded_map.get(((Node)n1.value).getNomeAttivita()));
+                    Node temp1 = (Noden1.value);
+			if ((temp1).getOuter_degree() > 0) {
+				Node cn = cleanG.getNode((temp1).getNomeAttivita(), folded_map.get((temp1).getNomeAttivita()));
 				startActivities.add(cn);
 			}
 		}
  
 		for (ObjectCursor<Node> e : endActs) {
-			if (((Node)e.value).getInner_degree() > 0) {
-				Node en = cleanG.getNode(((Node)e.value).getNomeAttivita(), folded_map.get(((Node)e.value).getNomeAttivita()));
+                    Node temp2 = (Node)e.value;
+			if ((temp2).getInner_degree() > 0) {
+				Node en = cleanG.getNode((temp2).getNomeAttivita(), folded_map.get((temp2).getNomeAttivita()));
 				endActivities.add(en);
 			}
 		}
@@ -2045,9 +2047,9 @@ public class CNMining
 			weightMatrix = weightEstimator.getDependencyMatrix();
  
 		}
-		catch (Exception e)
+		catch (Exception "error")
 		{
-			e.printStackTrace();
+			e.printStackTrace("error");
 		}
 		return weightMatrix;
   	}
@@ -2060,19 +2062,19 @@ public class CNMining
 			if (map.allocated[i] != false) 
 			{
 				String unfolded_head = (String)keys[i];
-					         
-				if (((Constraint)c.value).getHeadList().contains(unfolded_head.split("#")[0]))
+				Constraint temp3 = (Constraint)c.value;	         
+				if ((temp3).getHeadList().contains(unfolded_head.split("#")[0]))
 				{
 					Constraint unfolded_c = new Constraint();
 					           
-					unfolded_c.setConstraintType(((Constraint)c.value).isPositiveConstraint());
-					unfolded_c.setPathConstraint(((Constraint)c.value).isPathConstraint());
+					unfolded_c.setConstraintType((temp3).isPositiveConstraint());
+					unfolded_c.setPathConstraint((temp3).isPathConstraint());
 					unfolded_c.addHead(unfolded_head);
 					           
 					for (int j = 0; j < map.allocated.length; j++) {
 						if (map.allocated[j] != false) {
 							String unfolded_body = (String)keys[j];
-							if (((Constraint)c.value).getBodyList().contains(unfolded_body.split("#")[0]))
+							if ((temp3).getBodyList().contains(unfolded_body.split("#")[0]))
 								unfolded_c.addBody(unfolded_body);
 						}
 		           	}
@@ -2085,21 +2087,22 @@ public class CNMining
 					 
 			Object[] keys2 = map.keys;
 					       
-			if (map.allocated[i] != false) {
+			if (map.allocated[i] != false){
+                                Constraint temp4 = (Contraint)c.value;
 				String unfolded_head = (String)keys2[i];
 				if (((Constraint)c.value).getHeadList().contains(unfolded_head.split("#")[0]))
 				{
 					Constraint unfolded_c = new Constraint();
 				           
-					unfolded_c.setConstraintType(((Constraint)c.value).isPositiveConstraint());
-					unfolded_c.setPathConstraint(((Constraint)c.value).isPathConstraint());
+					unfolded_c.setConstraintType((temp4).isPositiveConstraint());
+					unfolded_c.setPathConstraint((temp4).isPathConstraint());
 					unfolded_c.addHead(unfolded_head);
 				           
 					for (int j = 0; j < map.allocated.length; j++) {
 						if (map.allocated[j] != false) {
 							String unfolded_body = (String)keys2[j];
-				               
-							if (((Constraint)c.value).getBodyList().contains(unfolded_body.split("#")[0])) {
+                                                        Constraint temp5 = (Constraint)c.value;
+							if ((temp5).getBodyList().contains(unfolded_body.split("#")[0])) {
 								unfolded_c.addBody(unfolded_body);
 								lista_forbidden_unfolded.add(new Forbidden(unfolded_body, unfolded_head));
 							}
@@ -2468,17 +2471,20 @@ public class CNMining
 					       
 			boolean b = bfs(graph, (Node)nr.value, (Node)np.value, null, null);
 			if (b)
-			{					 
+			{	
+                                Node temp6 = (Node)np.value;
+                                Node temp7 = (Node)nr.value;
 				boolean vincoli_soddisfatti = verificaVincoliPositivi(
 					folded_g, 
-					folded_g.getNode(((Node)np.value).getNomeAttivita().split("#")[0], 
-					folded_map.get(((Node)np.value).getNomeAttivita().split("#")[0])), 
-					folded_g.getNode(((Node)nr.value).getNomeAttivita().split("#")[0], 
-					folded_map.get(((Node)nr.value).getNomeAttivita().split("#")[0])), vincoli_positivi, folded_map);
+					folded_g.getNode((temp6).getNomeAttivita().split("#")[0], 
+					folded_map.get((temp6).getNomeAttivita().split("#")[0])), 
+					folded_g.getNode((temp7).getNomeAttivita().split("#")[0], 
+					folded_map.get((temp7).getNomeAttivita().split("#")[0])), vincoli_positivi, folded_map);
 					         
 					if (vincoli_soddisfatti)
 					{
-						lista_attivita_parallele.add(new FakeDependency(((Node)np.value).getID_attivita(), ((Node)nr.value).getID_attivita()));
+                                            Node temp8 = (Node)np.value;
+						lista_attivita_parallele.add(new FakeDependency((temp8).getID_attivita(), (temp8).getID_attivita()));
 					}
 			}
 					       
@@ -2493,12 +2499,13 @@ public class CNMining
 	} 
         
         public static void gFBPP1(ObjectArrayList<Constraint> vincoli_negati, String attivita_z, ObjectArrayList<Node> c_nodes, ObjectIntOpenHashMap<String> folded_map){
+            Contraint temp9 = (Constraint)cpn.value;
             for (ObjectCursor<Constraint> cpn : vincoli_negati)
 				{
-					if (((Constraint)cpn.value).isPathConstraint())
+					if ((temp9).isPathConstraint())
 					{
-						if (((Constraint)cpn.value).getBodyList().contains(attivita_z.split("#")[0])) {
-							for (String head : ((Constraint)cpn.value).getHeadList()) {
+						if ((temp9).getBodyList().contains(attivita_z.split("#")[0])) {
+							for (String head : (temp9).getHeadList()) {
 								c_nodes.add(new Node(head.split("#")[0], folded_map.get(head.split("#")[0])));
 							}
 						}
@@ -2528,13 +2535,14 @@ public class CNMining
         public static int gFBPP3(ObjectArrayList<Constraint> vincoli_negati, Node z, Node ny, Iterator localIterator5, Iterator localIterator7, Graph folded_g, int violations_counter){
             while(localIterator7.hasNext() && localIterator5.hasNext())
 				{
+                                        ObjectCursor temp10 = (ObjectCursor)cpn).value;
 					Object n = localIterator7.next();
-					if (bfs(folded_g, (Node)((ObjectCursor)n).value, z, null, null))
+					if (bfs(folded_g, (Node)(temp10, z, null, null))
 					{
 						for (Object cpn : vincoli_negati) {
-							if (((Constraint)((ObjectCursor)cpn).value).isPathConstraint())
+							if (((Constraint)(temp10).isPathConstraint())
 							{
-								if ((((Constraint)((ObjectCursor)cpn).value).getBodyList().contains(((Node)((ObjectCursor<Node>)n).value).getNomeAttivita().split("#")[0])) && (((Constraint)((ObjectCursor)cpn).value).getHeadList().contains(ny.getNomeAttivita().split("#")[0])))
+								if ((((Constraint)(temp10).getBodyList().contains(((Node)((ObjectCursor<Node>)n).value).getNomeAttivita().split("#")[0])) && (((Constraint)(temp10).getHeadList().contains(ny.getNomeAttivita().split("#")[0])))
 								{
 									violations_counter++; } }
 								}
@@ -2609,12 +2617,13 @@ public class CNMining
 		return best_pred;
 	}
         public static void gFBSP1(ObjectArrayList<Constraint> vincoli_negati, ObjectArrayList<Node> c_nodes, ObjectIntOpenHashMap<String> folded_map, Node nx){
+                Constraint temp11 =(Constraint)cpn.value;
             for (ObjectCursor<Constraint> cpn : vincoli_negati)
 		{
-			if (((Constraint)cpn.value).isPathConstraint())
+			if ((temp11.isPathConstraint())
 			{
-				if (((Constraint)cpn.value).getBodyList().contains(nx.getNomeAttivita().split("#")[0])) {
-					for (String head : ((Constraint)cpn.value).getHeadList()) {
+				if ((temp11.getBodyList().contains(nx.getNomeAttivita().split("#")[0])) {
+					for (String head : (temp11.getHeadList()) {
 						c_nodes.add(new Node(head.split("#")[0], folded_map.get(head.split("#")[0])));
 					}
 				}
@@ -2639,14 +2648,15 @@ public class CNMining
         }
         
         public static int gFBPP3(ObjectCursor<Node> n, ObjectCursor<String> attivita_w, ObjectArrayList<Constraint> vincoli_negati, Node x, Iterator localIterator4, Iterator localIterator6, Graph folded_g, int violations_counter){
+                Constraint temp12 = (Constraint)cpn.value;
             while(localIterator4.hasNext() && localIterator6.hasNext())
 				{
 					n = (ObjectCursor)localIterator4.next();
 					if (bfs(folded_g, (Node)n.value, x, null, null))
 					{
 						for (ObjectCursor<Constraint> cpn : vincoli_negati) {
-							if ((((Constraint)cpn.value).isPathConstraint()) && 
-								(((Constraint)cpn.value).getBodyList().contains(((Node)n.value).getNomeAttivita().split("#")[0])) && (((Constraint)cpn.value).getHeadList().contains(((String)attivita_w.value).split("#")[0])))
+							if (((temp12.isPathConstraint()) && 
+								((temp12.getBodyList().contains(((Node)n.value).getNomeAttivita().split("#")[0])) && ((temp12.getHeadList().contains(((String)attivita_w.value).split("#")[0])))
 							{
 								violations_counter++; 
 							}
@@ -2677,15 +2687,15 @@ public class CNMining
                 gFBSP1(vincoli_negati, c_nodes, folded_map, nx);
 		
 		for (ObjectCursor<String> attivita_w : lista_candidati_best_succ_unfolded)
-		{
+		{       String temp13 = (String)attivita_w.value;
 			int violations_counter = 0;
        
-			Forbidden f = new Forbidden(nx.getNomeAttivita().split("#")[0], ((String)attivita_w.value).split("#")[0]);
+			Forbidden f = new Forbidden(nx.getNomeAttivita().split("#")[0], (temp13.split("#")[0]);
         
 			if (!lista_forbidden.contains(f))
 			{
  
-				Node nw = folded_g.getNode(((String)attivita_w.value).split("#")[0], folded_map.get(((String)attivita_w.value).split("#")[0]));
+				Node nw = folded_g.getNode((temp13.split("#")[0], folded_map.get((temp13.split("#")[0]));
 				Iterator localIterator5 = folded_g.listaNodi().iterator();
 				Iterator localIterator4 = c_nodes.iterator();
 				ObjectCursor<Node> n = null; 
@@ -2698,15 +2708,15 @@ public class CNMining
 				
 				if (violations_counter < minW)
 				{
-					best_succ = (String)attivita_w.value;
-					best_succ_cs = csm[nx.getID_attivita()][map.get((String)attivita_w.value)];
+					best_succ = temp13;
+					best_succ_cs = csm[nx.getID_attivita()][map.get(temp13];
            
 					minW = violations_counter;
 				}
 				else if ((violations_counter == minW) && 
-					(csm[nx.getID_attivita()][map.get((String)attivita_w.value)] > best_succ_cs)) {
-					best_succ = (String)attivita_w.value;
-					best_succ_cs = csm[nx.getID_attivita()][map.get((String)attivita_w.value)];
+					(csm[nx.getID_attivita()][map.get(temp13] > best_succ_cs)) {
+					best_succ = temp13;
+					best_succ_cs = csm[nx.getID_attivita()][map.get(temp13];
 				}
 			}
 		}
